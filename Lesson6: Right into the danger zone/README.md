@@ -1,3 +1,5 @@
+#Work in progress.  Don't believe everything you read.
+
 - talk about cost
 - talk about runaway lambdas
 - talk about concurrency

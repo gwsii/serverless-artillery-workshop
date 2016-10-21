@@ -1,3 +1,5 @@
+#Work in progress.  Don't believe everything you read.
+
 #Lesson 5: “Hello, serverless-artillery.”
 Goal: Deploy and run a large-scale load test against your endpoint.
 
