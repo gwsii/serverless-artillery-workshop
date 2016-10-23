@@ -1,13 +1,16 @@
-#Work in progress.  Don't believe everything you read.
+#Lesson 6: Right into the danger zone
+Goal: Understand how your system behaves under edge-cases, when concurrency and database limits are hit.
 
-- talk about cost
-- talk about runaway lambdas
-- talk about concurrency
-- go mad - up the voltage
-- look at cloudwatch
-- update API Gateway threshold
-- repeat
-- update DynamoDB IOPS
-- repeat
-- go beyond lambda limits for the account
-- view  behavior
+###Step 1:
+What happens when you ask for more lambdas than your account limit supports?
+In cloudwatch, add lambda throttling to your dashboard, then attempt to invoke a very short duration, very high load scenario.
+By default, AWS gives you 100 concurrent Lambdas, so try something higher than 2500 TPS.
+
+###Step 2:
+In your sample serverless architecture, keep track of API Gateway Throttled requests (429 errors) and DynamoDB read/write limits.  These two can be the source of challenges.
+
+###Step 3:
+Remember, when you've starting something too big, to remove your Lambda function use:
+```sh
+$ slsart remove
+```
