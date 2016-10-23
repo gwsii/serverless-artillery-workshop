@@ -27,13 +27,7 @@ The other files are used as follows:
 
 From now on, slsart deploy and run will use these configuration files when run in this directory.
 
-This entire directory is uploaded to AWS when the Lambda is deployed. Since the Node JS dependencies need to be uploaded along with the lambda code, it's necessary to create the dependency tree (specifically the node_modules directory) with this command:
-
-```sh
-$ npm install
-```
-
-After churning for a bit, the node_modules directory should be created.
+This entire directory is uploaded to AWS when the Lambda is deployed.
 
 Optionally, it should be possible to test that the current directory configuration is working with:
 
