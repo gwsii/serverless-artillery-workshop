@@ -12,37 +12,33 @@ $ mkdir customTestLambda
 $ cd customTestLambda
 $ slsart configure
 $ ls
-handler.js	package.json	script.yml	serverless.yml
+handler.js	package.json	serverless.yml
 ```
 
-One of the four files was already covered in previous steps: script.yml. Customize this file to control the target service, durattion, load, etc. Feel free to reuse the one from previous steps.
-
-The other files are used as follows:
+The purposes of these files follow:
 
 |file|description|
 |:----|:----------|
-|package.json|NodeJS dependencies for the Lambda|
+|package.json|NodeJS dependencies for the Lambda.  Add Artillery plugins you want to use here.|
 |serverless.yml|Serverless service definition. Change AWS-specific settings here|
 |handler.js|Code to implement the load testing. **EDIT AT YOUR OWN RISK**|
 
-From now on, slsart deploy and run will use these configuration files when run in this directory.
+From now on, slsart deploy and run will use these configuration files when run in this directory.  To use the originals, switch to a directory without a `serverless.yml`.
 
-This entire directory is uploaded to AWS when the Lambda is deployed. Since the Node JS dependencies need to be uploaded along with the lambda code, it's necessary to create the dependency tree (specifically the node_modules directory) with this command:
+This entire directory is uploaded to AWS when the Lambda is deployed. This allows you to add plugins or payload files (*.csv).  May sure that after any modifications of any of the files or the addition of new files, that you re-deploy with:
 
 ```sh
-$ npm install
+slsart deploy
 ```
-
-After churning for a bit, the node_modules directory should be created.
 
 Optionally, it should be possible to test that the current directory configuration is working with:
 
 ```sh
 $ slsart deploy
-$ slsart run -s script.yml
+$ slsart run
 ```
 
-This should deploy and run the default script and show results.
+This should deploy and run the local `./script.yml` and show results.
 
 ###Step 2: Add influxdb Artillery plugin
 

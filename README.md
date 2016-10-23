@@ -54,7 +54,7 @@ In order to account for long cold-start times (the very first time a Lambda func
 By increasing the maximum acceptable load for a single lambda well beyond its abilities and doing a ramp from 1 to 500 TPS, we saw that a 1024-powered lambda maxes out at about 200 TPS. Additionally, we saw that the measured latencies increase as the lambda is loaded with more work. For this reason we’ve set default load per lambda to 25 TPS. If accurate latencies are not important, and concurrencies are your limit, you can use a 1536-power lambda at around 250 TPS. Remember that lambda power adjusts CPU, I/O, and RAM - not just RAM.
 
 ##What does all of this cost?
-AWS Lambda charges based on both the number of invocations and the duration of each function. Here is an example of some costs using the default settings:
+AWS Lambda charges based on both the number of invocations and the duration of each function. Here is an example of some costs assuming continuous execution and using the default settings:
 
 ![Serverless all the things!](Images/cost-table.png)
 
@@ -65,7 +65,7 @@ If you don’t want to host an InfluxDB server on an EC2 instance, you can use o
 Artillery.io also supports request plugins. In order to test latency against authenticated AWS API Gateway endpoints, we also contributed an AWS Signature V4 Signing plugin (artillery-plugin-aws-sigv4). This plugin allows the lambda to use its assigned AWS IAM Role to sign requests.
 
 ##Props to our developers
-Huge props and all credit is due to Erik Erikson and Greg Smith, our senior developers behind all of this code. Special thanks also to Hassy Veldstra and the good devs at shoreditch-ops, creators of artillery.io - well done!
+Huge props and all credit is due to Erik Erikson and Greg Smith, our senior developers behind all of this code. Special thanks also to Hassy Veldstra and the good devs at shoreditch-ops, creators of artillery.io - well done!  Clearly, special thanks are due to Austen Collins and the rest of the crew at Serverless, Inc. who gave us all the Serverless Framework, sparked our imaginations, and saved us a lot of pain.  This project is brought to you by them, really.  We just took advantage.
 
 ##We humbly request your thoughts and feedback
 All feedback is welcomed - so don't be shy!
