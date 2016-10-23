@@ -12,8 +12,10 @@ $ mkdir customTestLambda
 $ cd customTestLambda
 $ slsart configure
 $ ls
-handler.js	package.json	serverless.yml
+handler.js	package.json    serverless.yml
 ```
+
+(Note you may also see a script.yml if you've previously created that file.)
 
 The purposes of these files follow:
 

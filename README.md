@@ -64,8 +64,10 @@ If you don’t want to host an InfluxDB server on an EC2 instance, you can use o
 ##Load-testing IAM authenticated endpoints
 Artillery.io also supports request plugins. In order to test latency against authenticated AWS API Gateway endpoints, we also contributed an AWS Signature V4 Signing plugin (artillery-plugin-aws-sigv4). This plugin allows the lambda to use its assigned AWS IAM Role to sign requests.
 
-##Props to our developers
-Huge props and all credit is due to Erik Erikson and Greg Smith, our senior developers behind all of this code. Special thanks also to Hassy Veldstra and the good devs at shoreditch-ops, creators of artillery.io - well done!  Clearly, special thanks are due to Austen Collins and the rest of the crew at Serverless, Inc. who gave us all the Serverless Framework, sparked our imaginations, and saved us a lot of pain.  This project is brought to you by them, really.  We just took advantage.
+##Kudos!
+Huge props and all credit for the serverless-artillery code is due to Erik Erikson and Greg Smith, our senior developers behind all of this code.
+Special thanks also to Hassy Veldstra and the good devs at shoreditch-ops, creators of artillery.io - well done!
+Clearly, special thanks are due to Austen Collins and the rest of the crew at Serverless, Inc. who gave us the Serverless Framework, sparked our imaginations, and saved us a lot of pain.
 
 ##We humbly request your thoughts and feedback
 All feedback is welcomed - so don't be shy!
