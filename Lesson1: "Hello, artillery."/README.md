@@ -3,7 +3,7 @@ Goal: Deploy and run a simple load test against a public endpoint.
 
 ###Prerequisites
 Installation
-We assume you have node.js (v4 or better) installed. Likewise you should have the serverless framework (v1.0+) either installed globally or available in the local node_modules.
+We assume you have node.js (v4 or better) installed. Likewise you should have the serverless framework (`^1.0.3`) either installed globally or available in the local node_modules.
 
 ###Step 1: serverless-artillery requires AWS credentials
 
@@ -29,11 +29,24 @@ $ export AWS_PROFILE=my-profile
 ```
 
 ####Option 2:
-You may already have these credentials on your machine using the AWS SDK and aws init.
+You may already have these credentials on your machine using the AWS SDK, aws init, or some corporate utility.
 
-###Step 2: install serverless v1.0.2+ and the serverless-artillery node package on your machine
 ```sh
-$ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+$ export AWS_PROFILE=your-preexisting-profile
+```
+
+####Option 3:
+Grab your credentials from a script, tool, or whatevs and add them to the environment.
+
+```sh
+$ export AWS_ACCESS_KEY_ID=<access-key-id>
+$ export AWS_SECRET_ACCESS_KEY=<secret-access-key>
+$ export AWS_SESSION_TOKEN=<session-token>             # this one is optional
+```
+
+###Step 2: install serverless v1.0.3+ and the serverless-artillery node package on your machine
+```sh
+$ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share} # this is for those of you who have corrupted your file system
 $ npm install -g serverless
 $ npm install -g serverless-artillery
 ```

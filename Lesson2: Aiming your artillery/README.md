@@ -4,15 +4,15 @@ Goal: create a script and test your own service endpoint
 ###Step 1: Create a simple load script with a short duration and small load (<25 TPS).
 
 ```
-$ slsart script --endpoint <complete target URL here> --duration 10 --rate 5 --rampTo 15 > my-script.yaml
-$ slsart run --script my-script.yaml
+$ slsart script --endpoint <complete target URL here> --duration 10 --rate 5 --rampTo 15
+$ slsart run
 ```
 
 ###Step 2: Let's take a look at the script that was created.
 
 ```
 $ ls
-$ <your fav editor> script.yaml
+$ <your fav editor> script.yml
 ```
 
 This is the file you will modify to describe your load test the script feature is used only to quickly create a basic script for you to run from.
