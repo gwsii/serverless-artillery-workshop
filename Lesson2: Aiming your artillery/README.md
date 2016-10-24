@@ -15,7 +15,7 @@ $ ls
 $ <your fav editor> script.yml
 ```
 
-This is the file you will modify to describe your load test the script feature is used only to quickly create a basic script for you to run from.
+This is the file you will modify to describe your load test - the script feature is used only to quickly create a basic script for you to run from.  Changing your script does not require a redploy, just invoke again with whichever script you desire.
 
 The load script determines what targets are load tested and how.  Artillery.io's configuration script is fully documented on their web page - https://artillery.io/docs/.  Lots of examples can be found at https://github.com/shoreditch-ops/artillery-core/tree/master/test/scripts.
 
