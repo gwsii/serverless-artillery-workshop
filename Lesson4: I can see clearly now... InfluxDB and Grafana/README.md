@@ -37,14 +37,14 @@ Optionally, it should be possible to test that the current directory configurati
 
 ```sh
 $ slsart deploy
-$ slsart run
+$ slsart invoke
 ```
 
-This should deploy and run the local `./script.yml` and show results.
+This should deploy and invoke the lambda using the local `./script.yml`.
 
 ###Step 2: Add influxdb Artillery plugin
 
-To allow the Lambda code to write to InfluxDB, the correct NPM package dependency must be added. Run the following command in the directory just created:
+To allow the Lambda code to write to InfluxDB, the correct NPM package dependency must be added. Run the following command (no -g global flag!) in the directory just created:
 
 ```sh
 npm install --save artillery-plugin-influxdb
