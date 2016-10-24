@@ -3,16 +3,16 @@ Goal: A deeper understanding of the theory of the problem and the theory of the 
 
 The following addition to your Artillery script can control the values that the project uses for validating scripts and determining how to split and distribute the script's declared load across Lambdas.
 
-This was helpful for debugging.  Note that as programmed, the handler will allow these values to be reduced from their defaults but will reject increases in these values.  Increases thereby require editing and re-deploying the code.
+This was helpful for debugging.  It is helpful for crushing with the moar powers or as we will do here, discovering how lambdas perform under non-default load conditions and why we chose the values we did.
 
 ```sh
 {	# default values listed below
 	_split: {
-		maxScriptDurationInSeconds: 86400,
-		maxChunkDurationInSeconds: 240,
-		maxScriptRequestsPerSecond: 5000,
-		maxChunkRequestsPerSecond: 25,
-		timeBufferInMilliseconds: 15000
+		maxScriptDurationInSeconds: 86400,	# = 12 hours, max of 3 days
+		maxChunkDurationInSeconds: 240,		# = 4 minutes, max of 4 minutes and 45 seconds
+		maxScriptRequestsPerSecond: 5000,	# max of 50,000 RPS
+		maxChunkRequestsPerSecond: 25,		# max of 500 RPS
+		timeBufferInMilliseconds: 15000		# = 15 seconds, max of 30 seconds 
 	}
 }
 ```
