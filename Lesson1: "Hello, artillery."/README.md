@@ -2,8 +2,7 @@
 Goal: Deploy and run a simple load test against a public endpoint.
 
 ###Prerequisites
-Installation
-We assume you have node.js (v4 or better) installed. Likewise you should have the serverless framework (v1.0+) either installed globally or available in the local node_modules.
+We assume you have [Node.js](https://nodejs.org/en/) (v4 or better) installed.
 
 ###Step 1: serverless-artillery requires AWS credentials
 
@@ -29,11 +28,24 @@ $ export AWS_PROFILE=my-profile
 ```
 
 ####Option 2:
-You may already have these credentials on your machine using the AWS SDK and aws init.
+You may already have these credentials on your machine using the AWS SDK, aws init, or some corporate utility.
 
-###Step 2: install serverless v1.0.2+ and the serverless-artillery node package on your machine
 ```sh
-$ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+$ export AWS_PROFILE=your-preexisting-profile
+```
+
+####Option 3:
+Grab your credentials from a script, tool, or whatevs and add them to the environment.
+
+```sh
+$ export AWS_ACCESS_KEY_ID=<access-key-id>
+$ export AWS_SECRET_ACCESS_KEY=<secret-access-key>
+$ export AWS_SESSION_TOKEN=<session-token>             # this one is optional
+```
+
+###Step 2: install serverless v1.0.3+ and the serverless-artillery node package on your machine
+```sh
+$ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share} # this is for those of you who have corrupted your file system
 $ npm install -g serverless
 $ npm install -g serverless-artillery
 ```
@@ -42,19 +54,19 @@ $ npm install -g serverless-artillery
 ```sh
 $ slsart deploy
 ```
-check your AWS console lambda page to confirm
+Check your AWS console lambda page to confirm that a new Lambda has been created, this can take a minute for the page to update even though the Lambda is available.
 
-
-###Step 4: by default, slsart run will briefly test against https://aws.amazon.com with low load
+###Step 4: Without script parameters, slsart invoke will run the lambda with a built-in default load script - a short test against https://aws.amazon.com with low load
 ```sh
-$ slsart run
+$ slsart invoke
 ```
 
-###Step 5: you should see the results returned directly
-scroll to the top of the results output to see the summary
-this will only be true for short loads (<4 min) and small rates (<25 TPS)
+###Step 5: after 20-30 seconds, you should see the results returned directly in the CLI
+Scroll to the top of the results output to see the summary
+This (seeing load in the CLI) will only be true for short loads (<4 min) and small rates (<25 RPS)
+For larger loads you'll need a results plug-in and a results database (we'll cover this in later lessons).
 
-
-###Step 6: in the AWS console, check out your cloudwatch logs
+###Step 6: in the AWS console, check out your Cloud Watch logs
 In AWS console --> Lambda --> select your lambda function
-Select monitoring tab --> click on the relevant graph
+Select monitoring tab --> click on the relevant graph (like invocations)
+If you see errors, check the Cloud Watch logs of your Lambda function for specifics.
