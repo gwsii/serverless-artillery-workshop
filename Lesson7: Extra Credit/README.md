@@ -1,8 +1,24 @@
 #Lesson 7: Extra credit
 Goal: A deeper understanding of the theory of the problem and the theory of the solution.
 
+The following addition to your Artillery script can control the values that the project uses for validating scripts and determining how to split and distribute the script's declared load across Lambdas.
+
+This was helpful for debugging.  Note that as programmed, the handler will allow these values to be reduced from their defaults but will reject increases in these values.  Increases thereby require editing and re-deploying the code.
+
+```sh
+{	# default values listed below
+	_split: {
+		maxScriptDurationInSeconds: 86400,
+		maxChunkDurationInSeconds: 240,
+		maxScriptRequestsPerSecond: 5000,
+		maxChunkRequestsPerSecond: 25,
+		timeBufferInMilliseconds: 15000
+	}
+}
+```
+
 ###Step 1:
-Configure your default lambda max load to 500, create a ramp from 1 to 500 over 240 seconds - what happens?  Why?
+Configure your default lambda max load (`maxChunkRequestsPerSecond`) to 500, create a ramp from 1 to 500 over 240 seconds - what happens?  Why?
 
 ###Step 2:
 Increase your default lambda power from 1024 to 1536 and repeat step 1.

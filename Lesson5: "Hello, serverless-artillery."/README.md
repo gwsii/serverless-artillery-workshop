@@ -6,7 +6,7 @@ What happens when we go beyond the load a single lambda can easily generate?  Se
 When you're using multiple Lambdas over an extended period of time, each Lambda is generating its own results.  For this reason, a data collection resource like InfluxDB is essential to understanding the results of your run.
 
 ###Step 1:
-Try a rate greater than 25 and a duration greater than 240 seconds.  We have implemented a soft limit of 5,000 transactions per second (the rate) and 12 hours (the duration).  For the purpose of this lab, let's set your duration to 300 seconds and your rate to 500 TPS.
+Try a rate greater than 25 and/or a duration greater than 240 seconds.  We have implemented a soft limit of 5,000 transactions per second (the rate) and 12 hours (the duration).  For the purpose of this lab, let's set your duration to 300 seconds and your rate to 500 TPS.
 
 ###Step 2:
 Go to your Grafana dashboard from Lesson 4 and check out the results.  If you are doing long ramps, there is a known bug with artillery that sometimes calculates ramps a bit long, so you may see short overlaps across the 4-minute boundary.
