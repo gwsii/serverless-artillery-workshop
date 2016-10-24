@@ -10,6 +10,7 @@ This greater level of customization allows the modification of the code which ru
 ```sh
 $ mkdir customTestLambda
 $ cd customTestLambda
+$ cp ../script.yml .
 $ slsart configure
 $ ls
 handler.js	package.json    serverless.yml
@@ -21,13 +22,13 @@ The purposes of these files follow:
 
 |file|description|
 |:----|:----------|
-|package.json|NodeJS dependencies for the Lambda.  Add Artillery plugins you want to use here.|
+|package.json|Node.js dependencies for the Lambda.  Add Artillery plugins you want to use here.|
 |serverless.yml|Serverless service definition. Change AWS-specific settings here|
 |handler.js|Code to implement the load testing. **EDIT AT YOUR OWN RISK**|
 
 From now on, slsart deploy and run will use these configuration files when run in this directory.  To use the originals, switch to a directory without a `serverless.yml`.
 
-This entire directory is uploaded to AWS when the Lambda is deployed. This allows you to add plugins or payload files (*.csv).  May sure that after any modifications of any of the files or the addition of new files, that you re-deploy with:
+This entire directory is uploaded to AWS when the Lambda is deployed. This allows you to add plugins or payload files (*.csv).  Make sure that after any modifications to any of the files or the addition of new files, that you re-deploy with:
 
 ```sh
 slsart deploy
@@ -37,7 +38,7 @@ Optionally, it should be possible to test that the current directory configurati
 
 ```sh
 $ slsart deploy
-$ slsart run
+$ slsart invoke
 ```
 
 This should deploy and run the local `./script.yml` and show results.
@@ -87,7 +88,7 @@ YAML Config to Add:
 
 ```sh
 $ slsart deploy
-$ slsart run -s script.yml
+$ slsart invoke
 ```
 
 ###Step 4: Query and Visualize the Results
