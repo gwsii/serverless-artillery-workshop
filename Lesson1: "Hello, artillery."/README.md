@@ -2,8 +2,7 @@
 Goal: Deploy and run a simple load test against a public endpoint.
 
 ###Prerequisites
-Installation
-We assume you have node.js (v4 or better) installed. Likewise you should have the serverless framework (`^1.0.3`) either installed globally or available in the local node_modules.
+We assume you have [Node.js](https://nodejs.org/en/) (v4 or better) installed.
 
 ###Step 1: serverless-artillery requires AWS credentials
 
@@ -64,10 +63,10 @@ $ slsart invoke
 
 ###Step 5: after 20-30 seconds, you should see the results returned directly in the CLI
 Scroll to the top of the results output to see the summary
-This (seeing load in the CLI) will only be true for short loads (<4 min) and small rates (<25 TPS)
+This (seeing load in the CLI) will only be true for short loads (<4 min) and small rates (<25 RPS)
 For larger loads you'll need a results plug-in and a results database (we'll cover this in later lessons).
 
-###Step 6: in the AWS console, check out your cloudwatch logs
+###Step 6: in the AWS console, check out your Cloud Watch logs
 In AWS console --> Lambda --> select your lambda function
 Select monitoring tab --> click on the relevant graph (like invocations)
-If you see errors, check the cloudwatch logs of your Lambda function for specifics.
+If you see errors, check the Cloud Watch logs of your Lambda function for specifics.
