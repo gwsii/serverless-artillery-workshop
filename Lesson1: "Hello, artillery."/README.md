@@ -57,9 +57,9 @@ $ slsart deploy
 ```
 Check your AWS console lambda page to confirm that a new Lambda has been created, this can take a minute for the page to update even though the Lambda is available.
 
-###Step 4: Without script parameters, slsart run will run a built-in default load script - a short test against https://aws.amazon.com with low load
+###Step 4: Without script parameters, slsart invoke will run the lambda with a built-in default load script - a short test against https://aws.amazon.com with low load
 ```sh
-$ slsart run
+$ slsart invoke
 ```
 
 ###Step 5: after 20-30 seconds, you should see the results returned directly in the CLI
