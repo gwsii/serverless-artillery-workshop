@@ -5,7 +5,7 @@ Goal: create a script and test your own service endpoint
 
 ```
 $ slsart script --endpoint <complete target URL here> --duration 10 --rate 5 --rampTo 15
-$ slsart run
+$ slsart invoke
 ```
 
 ###Step 2: Let's take a look at the script that was created.
