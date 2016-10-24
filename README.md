@@ -56,7 +56,11 @@ By increasing the maximum acceptable load for a single lambda well beyond its ab
 ##What does all of this cost?
 AWS Lambda charges based on both the number of invocations and the duration of each function. Here is an example of some costs assuming continuous execution and using the default settings:
 
-![Serverless all the things!](Images/cost-table.png)
+Load|$ per hour|$ per day
+----|----------|---------
+50 RPS|$0.06|$1.4
+500 RPS|$0.60|$14
+5000 RPS|$6|$140
 
 ##Writing to InfluxDB (CloudWatch if you must)
 If you don’t want to host an InfluxDB server on an EC2 instance, you can use our Cloud Watch plugin (artillery-plugin-cloudwatch). The main challenge we had with Cloud Watch metrics are that they compress the load data heavily, showing you only min/max/average once per minute. This is often acceptable; however, when debugging, it is much nicer to have the per-second resolution and arbitrary calculation capabilities of InfluxDB.  For this we created another plugin (artillery-plugin-influxdb).  We chose InfluxDB over DynamoDB because of its easy queries for percentile results and its speed and efficiency.  If you're interested in writing a results plug-in for artillery.io that supports DynamoDB we'd love to try it! 
