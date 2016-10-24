@@ -12,5 +12,5 @@ Try a rate greater than 25 and a duration greater than 240 seconds.  We have imp
 Go to your Grafana dashboard from Lesson 4 and check out the results.  If you are doing long ramps, there is a known bug with artillery that sometimes calculates ramps a bit long, so you may see short overlaps across the 4-minute boundary.
 
 ###Step 3:
-Play around, try some larger and smaller loads, remember, if you start a long load and want to cancel it, you must use slsart remove and then wait for the control lambda to finish its 4-minute run and fail to invoke the next lambda to 'stop the train'.
+Play around, try some larger and smaller loads, remember, if you start a long load and want to cancel it, you must use slsart remove (or delete from the AWS Console) and then wait for the control lambda to finish its 4-minute run and fail to invoke the next lambda to 'stop the train'.
 

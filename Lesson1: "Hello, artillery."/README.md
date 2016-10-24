@@ -54,19 +54,19 @@ $ npm install -g serverless-artillery
 ```sh
 $ slsart deploy
 ```
-check your AWS console lambda page to confirm
+Check your AWS console lambda page to confirm that a new Lambda has been created, this can take a minute for the page to update even though the Lambda is available.
 
-
-###Step 4: by default, slsart run will briefly test against https://aws.amazon.com with low load
+###Step 4: Without script parameters, slsart invoke will run the lambda with a built-in default load script - a short test against https://aws.amazon.com with low load
 ```sh
 $ slsart invoke
 ```
 
-###Step 5: you should see the results returned directly
-scroll to the top of the results output to see the summary
-this will only be true for short loads (<4 min) and small rates (<25 RPS)
-
+###Step 5: after 20-30 seconds, you should see the results returned directly in the CLI
+Scroll to the top of the results output to see the summary
+This (seeing load in the CLI) will only be true for short loads (<4 min) and small rates (<25 RPS)
+For larger loads you'll need a results plug-in and a results database (we'll cover this in later lessons).
 
 ###Step 6: in the AWS console, check out your Cloud Watch logs
 In AWS console --> Lambda --> select your lambda function
-Select monitoring tab --> click on the relevant graph
+Select monitoring tab --> click on the relevant graph (like invocations)
+If you see errors, check the Cloud Watch logs of your Lambda function for specifics.
