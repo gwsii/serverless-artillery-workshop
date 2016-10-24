@@ -10,43 +10,42 @@ This greater level of customization allows the modification of the code which ru
 ```sh
 $ mkdir customTestLambda
 $ cd customTestLambda
+$ cp ../script.yml .
 $ slsart configure
 $ ls
-handler.js	package.json	script.yml	serverless.yml
+handler.js	package.json    serverless.yml
 ```
 
-One of the four files was already covered in previous steps: script.yml. Customize this file to control the target service, durattion, load, etc. Feel free to reuse the one from previous steps.
+(Note you may also see a script.yml if you've previously created that file.)
 
-The other files are used as follows:
+The purposes of these files follow:
 
 |file|description|
 |:----|:----------|
-|package.json|NodeJS dependencies for the Lambda|
+|package.json|Node.js dependencies for the Lambda.  Add Artillery plugins you want to use here.|
 |serverless.yml|Serverless service definition. Change AWS-specific settings here|
 |handler.js|Code to implement the load testing. **EDIT AT YOUR OWN RISK**|
 
-From now on, slsart deploy and run will use these configuration files when run in this directory.
+From now on, slsart deploy and run will use these configuration files when run in this directory.  To use the originals, switch to a directory without a `serverless.yml`.
 
-This entire directory is uploaded to AWS when the Lambda is deployed. Since the Node JS dependencies need to be uploaded along with the lambda code, it's necessary to create the dependency tree (specifically the node_modules directory) with this command:
+This entire directory is uploaded to AWS when the Lambda is deployed. This allows you to add plugins or payload files (*.csv).  Make sure that after any modifications to any of the files or the addition of new files, that you re-deploy with:
 
 ```sh
-$ npm install
+slsart deploy
 ```
-
-After churning for a bit, the node_modules directory should be created.
 
 Optionally, it should be possible to test that the current directory configuration is working with:
 
 ```sh
 $ slsart deploy
-$ slsart run -s script.yml
+$ slsart invoke
 ```
 
-This should deploy and run the default script and show results.
+This should deploy and invoke the lambda using the local `./script.yml`.
 
 ###Step 2: Add influxdb Artillery plugin
 
-To allow the Lambda code to write to InfluxDB, the correct NPM package dependency must be added. Run the following command in the directory just created:
+To allow the Lambda code to write to InfluxDB, the correct NPM package dependency must be added. Run the following command (no -g global flag!) in the directory just created:
 
 ```sh
 npm install --save artillery-plugin-influxdb
@@ -59,49 +58,82 @@ This modifies the package.json file to include the necessary dependency. The pac
   "dependencies": {
     "artillery-core": "^2.0.3-0",
     "artillery-plugin-influxdb": "^0.6.1",
-    "csv-parse": "^1.1.7",
-    "ntp-client": "^0.5.3"
+    "csv-parse": "^1.1.7"
   }
 }
 ```
 
 ###Step 3: Update Script to Log to Influx Server
 
-TODO: Add workshop server address.
-
-YAML Config to Add:
+Update the `config` portion of the test script to add the `plugin` from the example below:
 
 ```sh
   config: 
     plugins: 
       influxdb: 
-        testName: "my_load_test_case"
-        measurementName: "Latency"
-        errorMeasurementName: "ClientSideErrors"
+        testName: "my_load_test_case" # Unique test name
         influx: 
-          host: "my.influx.server.com"
-          username: "joe_developer"
-          password: "1t`sA$3cr3t"
-          database: "load_test_results"
-
-
+          host: "ec2-54-152-15-245.compute-1.amazonaws.com"
+          username: "admin"
+          password: "admin"
+          database: "artillery_metrics"
 ```
+
+Now that the necessary dependencies are in node_modueles it's time to upload the updated Lambda, and then invoke it:
 
 ```sh
 $ slsart deploy
-$ slsart run -s script.yml
+$ slsart invoke
 ```
+
+If all went correctly, the load test data was added to the InfluxDB. Next step is to query the DB.
 
 ###Step 4: Query and Visualize the Results
 
-Log into InfluxDB and query for your testName. See many data points.
+The database containing the results should have already been created, and is referenced in the test script under the `influx` part. 
+In this example, the database `artillery_metrics` is used.
 
-TODO: Influx DB login URL
+Log into InfluxDB at: http://ec2-54-152-15-245.compute-1.amazonaws.com:8086 and perform a quick query to check that database exists:
 
-Log into Grafana, open Load Tests page, pick testName from the list.
+```
+SHOW DATABASES
+```
 
-TODO: Grafana login URL.
+The `artillery_metrics` database shold be listed. In the InfluxDB dashboard, select the `artillery_metrics` database from the drop-down list. 
+With that selection made, queries made will be against that database.
+ 
+To see the measurements stored in this database, run this command:
+  
+```
+SHOW MEASUREMENTS
+```  
 
-See results.
+The `latencies` measurement should be in the list. To show all of the latencies, select them all:
 
-Optionally, keep Grafana open and rerun tests seeing results arrive in real-time.
+```
+SELECT * FROM latencies WHERE 
+```
+
+To see only results from a specific test, run:
+ 
+```
+**** Correct ....
+SELECT * FROM latencies WHERE test_case = 'my_test_name'
+```
+
+Once the test results have been verified in InfluxDB, it's time to see the graphs in Grafana.
+
+Log in using `admin/admin` for the username and password and open the `Load Test Results` dashboard. 
+Once on the dashboad, pick the test name from the drop-down list, make sure that the time-span includes the test results above.
+ 
+There will be a visualization of the test results, including latencies load and errors.
+
+TODO: Include example image.
+
+
+Optional:
+
+Set Grafana to update every 10 seconds and show metrics from the last minute or so. Return to the console and run the tests again, 
+perhaps increasing the test duration to a minute long or more.
+
+Switch back to the Grafana dashboard and watch the test results in real-time! :)
