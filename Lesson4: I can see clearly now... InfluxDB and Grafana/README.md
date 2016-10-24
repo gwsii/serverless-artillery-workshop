@@ -57,8 +57,7 @@ This modifies the package.json file to include the necessary dependency. The pac
   "dependencies": {
     "artillery-core": "^2.0.3-0",
     "artillery-plugin-influxdb": "^0.6.1",
-    "csv-parse": "^1.1.7",
-    "ntp-client": "^0.5.3"
+    "csv-parse": "^1.1.7"
   }
 }
 ```
