@@ -59,7 +59,7 @@ check your AWS console lambda page to confirm
 
 ###Step 4: by default, slsart run will briefly test against https://aws.amazon.com with low load
 ```sh
-$ slsart run
+$ slsart invoke
 ```
 
 ###Step 5: you should see the results returned directly
