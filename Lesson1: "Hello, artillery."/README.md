@@ -44,6 +44,13 @@ $ export AWS_SESSION_TOKEN=<session-token>             # this one is optional
 ```
 
 ###Step 2: install serverless v1.0.3+ and the serverless-artillery node package on your machine
+
+####Note: if you are on a VPN and use a proxy, export your proxy to your shell
+```sh
+export proxy=https://your.proxy.com:1234
+```
+
+Regardless, install the the things
 ```sh
 $ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share} # this is for those of you who have corrupted your file system
 $ npm install -g serverless
@@ -61,10 +68,10 @@ Check your AWS console lambda page to confirm that a new Lambda has been created
 $ slsart invoke
 ```
 
-###Step 5: after 20-30 seconds, you should see the results returned directly in the CLI
+###Step 5: after ~5 seconds, you should see the results returned directly in the CLI
 Scroll to the top of the results output to see the summary
-This (seeing load in the CLI) will only be true for short loads (<4 min) and small rates (<25 RPS)
-For larger loads you'll need a results plug-in and a results database (we'll cover this in later lessons).
+This (seeing load in the CLI) will only be true for short loads (<1 min 58 sec) and small rates (<25 RPS)
+For larger loads you'll need metric collection on your service or a results plug-in and a results database (we'll cover this in later lessons).
 
 ###Step 6: in the AWS console, check out your Cloud Watch logs
 In AWS console --> Lambda --> select your lambda function
