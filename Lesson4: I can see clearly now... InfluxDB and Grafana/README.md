@@ -108,17 +108,17 @@ To see the measurements stored in this database, run this command:
 SHOW MEASUREMENTS
 ```  
 
-The `latencies` measurement should be in the list. To show all of the latencies, select them all:
+The `latency` measurement should be in the list. To show all of the latencies, select them all:
 
 ```
-SELECT * FROM latencies WHERE 
+SELECT * FROM latency WHERE
 ```
 
 To see only results from a specific test, run:
  
 ```
 **** Correct ....
-SELECT * FROM latencies WHERE test_case = 'my_test_name'
+SELECT * FROM latency WHERE test_case = 'my_test_name'
 ```
 
 Once the test results have been verified in InfluxDB, it's time to see the graphs in Grafana.
