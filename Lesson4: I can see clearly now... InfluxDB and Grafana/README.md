@@ -131,7 +131,7 @@ Once on the dashboad, pick the test name from the drop-down list, make sure that
  
 There will be a visualization of the test results, including latencies load and errors.
 
-![Load Test Dashboard](Images/grafana-dashboard.png)
+![Load Test Dashboard](../Images/grafana-dashboard.png)
 
 ####Optional:
 
