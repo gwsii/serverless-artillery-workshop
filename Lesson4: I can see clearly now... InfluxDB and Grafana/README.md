@@ -69,15 +69,15 @@ This modifies the package.json file to include the necessary dependency. The pac
 Update the `config` portion of the test script to add the `plugin` from the example below:
 
 ```sh
-  config:
-    plugins:
-      influxdb:
-        testName: "<TEST_CASE_NAME>"  # This name must be changed
-        influx:
-          host: "http://ec2-54-152-15-245.compute-1.amazonaws.com/"
-          username: "admin"
-          password: "admin"
-          database: "artillery_metrics"
+config:
+  plugins:
+    influxdb:
+      testName: "<TEST_CASE_NAME>"  # This name must be changed
+      influx:
+        host: "http://ec2-54-152-15-245.compute-1.amazonaws.com/"
+        username: "admin"
+        password: "admin"
+        database: "artillery_metrics"
 
 ```
 
