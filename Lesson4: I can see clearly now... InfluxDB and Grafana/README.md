@@ -121,7 +121,7 @@ SELECT * FROM latency WHERE
 To see only results from a specific test, run:
  
 ```
-SELECT * FROM latency WHERE testName = 'a09y-smoke-load-test'
+SELECT * FROM latency WHERE testName = 'a09y-smoke-load-test' limit=10
 ```
 
 Once the test results have been verified in InfluxDB, it's time to see the graphs in Grafana.
