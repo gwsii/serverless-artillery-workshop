@@ -74,7 +74,7 @@ config:
     influxdb:
       testName: "<TEST_CASE_NAME>"  # This name must be changed
       influx:
-        host: "http://ec2-54-152-15-245.compute-1.amazonaws.com/"
+        host: "ec2-54-161-98-139.compute-1.amazonaws.com"
         username: "admin"
         password: "admin"
         database: "artillery_metrics"
@@ -97,7 +97,7 @@ The database containing the results should have already been created, and is ref
 In this example, the database `artillery_metrics` is used.
 
 
-Log into InfluxDB at: [http://ec2-54-161-98-139.compute-1.amazonaws.com/:8083/](http://ec2-54-161-98-139.compute-1.amazonaws.com:8083/) and perform a quick query to check that database exists:
+Log into InfluxDB at: [http://ec2-54-161-98-139.compute-1.amazonaws.com:8083/](http://ec2-54-161-98-139.compute-1.amazonaws.com:8083/) and perform a quick query to check that database exists:
 
 ```
 SHOW DATABASES
@@ -121,10 +121,12 @@ SELECT * FROM latency WHERE
 To see only results from a specific test, run:
  
 ```
-SAELECT * FROM latency WHERE testName = 'a09y-smoke-load-test'
+SELECT * FROM latency WHERE testName = 'a09y-smoke-load-test'
 ```
 
 Once the test results have been verified in InfluxDB, it's time to see the graphs in Grafana.
+
+[http://ec2-54-161-98-139.compute-1.amazonaws.com:3000](http://ec2-54-161-98-139.compute-1.amazonaws.com:3000)
 
 Log in using `admin/admin` for the username and password and open the `Load Test Results` dashboard. 
 Once on the dashboad, pick the test name from the drop-down list, make sure that the time-span includes the test results above.
